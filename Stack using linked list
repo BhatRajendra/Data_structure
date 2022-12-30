@@ -25,7 +25,7 @@ void push()	//function to push the elements
     else
     {
       ptr->val=val;	//pushing value
-      ptr->next=NULL;		//set next to NULL 
+      ptr->next=head;		//set next to head 
       head=ptr;	//equation head to new structure
     }
     printf("value pushed");
