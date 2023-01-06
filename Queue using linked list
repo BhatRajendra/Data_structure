@@ -24,16 +24,16 @@ void insert()           //function to insert elements
     		ptr->data=item;
     		if(front==NULL)
     		{
-      		front=ptr;
-      		rear=ptr;
-      		front->next=NULL;
-      		front->next=NULL;
+			front=ptr;
+			rear=ptr;
+			front->next=NULL;
+			rear->next=NULL;
     		}
     		else
     		{
-      		rear->next=ptr;
-      		rear=ptr;
-      		rear->next=NULL;
+			rear->next=ptr;
+			rear=ptr;
+			rear->next=NULL;
     		}
    	}
 }
