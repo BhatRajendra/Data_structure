@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max 100
+int queue[max];
+int front=-1,rear=-1;
+
+void insert()
+{
+        int item;
+        printf("Enter the element:\n");
+        scanf("%d",&item);
+        if(front==-1 && rear==-1)
+        {       
+                rear=0;
+                front=0;
+                queue[rear]=item;
+        }
+        else if(((rear+1)%max)==front)
+                printf("Overflow");
+        else
+        {
+                rear=(rear+1)%max;
+                queue[rear]=item;
+        }
+}
+
+int delete()
+{
+	if(front==-1 && rear==-1) // if queue is empty
+	{
+		printf("Queue overflow");
+	}
+	else if(front==rear) // if only one element exists
+	{
+		printf("deleted element is %d\n",queue[front]);//delete the element
+		front=rear=-1; // queue is empty
+	}
+	else // if queue has more than 1 element
+	{
+		printf("deleted element is %d\n",queue[front]); //delete element at front
+		front=(front+1)%max; //increment front
+	}
+}
+
+void display()
+{
+	int i=front;
+	if(front==-1 && rear==-1) //if queue is empty
+	{
+		printf("Queue is empty");
+	}
+	else
+	{
+		printf("elements in queue are:\n");
+		while(i<=rear) // printing elements from front to rear
+		{
+			printf("%d\n",queue[i]);
+			i=(i+1)%max; //incrementing front
+		}
+	}
+}
+
+int main()
+{
+  	int choice;
+  	while(1)                //to infinite loop till termination
+  	{
+   		printf("Select the operation:\n");
+    		printf("1.Insert\n2.Delete\n3.Display\n4.Exit\n"); 
+    		scanf("%d",&choice);         //operation input from user
+    		switch(choice)
+    		{
+              		case 1: insert();
+              		        break;
+              		case 2: delete();
+                      	        break;
+              		case 3: display();              //function call corresponding to the enterd choice
+                      	        break;
+              		case 4: exit(0);        //exiting the while loop
+              		default: printf("Invalid choice");
+                      	        break;
+     	        }   
+   	}
+  	return 0;
+}
+
+
