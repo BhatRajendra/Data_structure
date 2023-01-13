@@ -1,3 +1,4 @@
+/*Implemntation of circular queue using linked lists*/
 #include<stdio.h>
 #include<stdlib.h>
 struct node
@@ -7,7 +8,7 @@ struct node
 };
 struct node *front=NULL;
 struct node *rear=NULL;
-void enqueue(int x)             //insert elements in queue
+void enqueue(int x) //insert elements in queue
 {
 	struct node* newnode;
 	newnode=(struct node*)malloc(sizeof(struct node));
@@ -26,7 +27,7 @@ void enqueue(int x)             //insert elements in queue
 	}
 }
 
-void dequeue()          //delete an element from queue
+void dequeue() //delete an element from queue
 {
 	struct node* temp;
 	temp=front;
@@ -47,7 +48,7 @@ void dequeue()          //delete an element from queue
 	}
 }
 
-void display()          //print the elements of queue
+void display() //print the elements of queue
 {
 	struct node* temp;
 	temp=front;
@@ -65,12 +66,13 @@ void display()          //print the elements of queue
 	}
 }
 
-int main()              //main function
+int main() //main function
 {
 	int choice,n,i,data;
+	
 	do
 	{
-		printf("\n1.insertion\n2.display\n3.deletion\n4.exit\n");
+		printf("\n1.insertion\n2.deletion\n3.display\n4.exit\n");
 		printf("enter your choice\n");
 		scanf("%d",&choice);
 		switch(choice)
