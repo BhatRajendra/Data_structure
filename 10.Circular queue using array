@@ -1,30 +1,29 @@
+//implementation of circular queue using array
 #include<stdio.h>
 #include<stdlib.h>
-#define max 100
-int queue[max];
-int front=-1,rear=-1;
-
-void insert()
+#define N 5
+int queue[N]; //declaration of array
+int front=-1;  
+int rear=-1;
+void enqueue(int x)  // for inserting value into the queue
 {
-        int item;
-        printf("Enter the element:\n");
-        scanf("%d",&item);
-        if(front==-1 && rear==-1)
-        {       
-                rear=0;
-                front=0;
-                queue[rear]=item;
-        }
-        else if(((rear+1)%max)==front)
-                printf("Overflow");
-        else
-        {
-                rear=(rear+1)%max;
-                queue[rear]=item;
-        }
+	if(front==-1 && rear==-1) //if queue is empty
+	{
+		front=rear=0; // make front and rear 0
+		queue[rear]=x; //insert value at rear
+	}
+	else if((rear+1)%N==front) //if queue is full
+	{
+		printf("Queue overflow");	
+	}
+	else
+	{
+		rear=(rear+1)%N; // if queue is not full
+		queue[rear]=x; // insert value at rear
+	}
 }
 
-int delete()
+int dequeue()
 {
 	if(front==-1 && rear==-1) // if queue is empty
 	{
@@ -32,13 +31,13 @@ int delete()
 	}
 	else if(front==rear) // if only one element exists
 	{
-		printf("deleted element is %d\n",queue[front]);//delete the element
+		printf("deleted element is%d\n",queue[front]);//delete the element
 		front=rear=-1; // queue is empty
 	}
 	else // if queue has more than 1 element
 	{
 		printf("deleted element is %d\n",queue[front]); //delete element at front
-		front=(front+1)%max; //increment front
+		front=(front+1)%N; //increment front
 	}
 }
 
@@ -55,33 +54,43 @@ void display()
 		while(i<=rear) // printing elements from front to rear
 		{
 			printf("%d\n",queue[i]);
-			i=(i+1)%max; //incrementing front
+			i=(i+1)%N; //incrementing front
 		}
 	}
 }
 
-int main()
+int main() //main function
 {
-  	int choice;
-  	while(1)                //to infinite loop till termination
-  	{
-   		printf("Select the operation:\n");
-    		printf("1.Insert\n2.Delete\n3.Display\n4.Exit\n"); 
-    		scanf("%d",&choice);         //operation input from user
-    		switch(choice)
-    		{
-              		case 1: insert();
-              		        break;
-              		case 2: delete();
-                      	        break;
-              		case 3: display();              //function call corresponding to the enterd choice
-                      	        break;
-              		case 4: exit(0);        //exiting the while loop
-              		default: printf("Invalid choice");
-                      	        break;
-     	        }   
-   	}
-  	return 0;
+	int choice,data;
+	while(1)
+	{
+		printf("enter your choice\n");
+		printf("1.enqueue\n2.dequeue\n3.display\n4.exit\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+			        printf("Enter the value to be inserted\n");//taking input for the value to be inserted
+			        scanf("%d",&data);
+			        enqueue(data);
+			        break;
+			        
+		        case 2:
+		                dequeue();
+		                break;
+				        
+		        case 3:
+			        display();
+			        break;
+
+		        case 4:
+			        exit(0);
+
+		        default:
+			        printf("invalid\n");							
+		}		
+	}
 }
+
 
 
