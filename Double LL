@@ -140,17 +140,19 @@ void insertion_specified()
    else  
    {  
        temp=head;  
-       printf("Enter the location");  
-       scanf("%d",&loc);  
+       printf("Enter the location after which you want to insert:");  
+       scanf("%d",&loc); 
+       
        for(i=0;i<loc;i++)  
        {  
-           temp = temp->next;  
-           if(temp == NULL)  
-           {  
-               printf("\n There are less than %d elements", loc);  
-               return;  
-           }  
-       }  
+	   temp = temp->next;  
+	   if(temp == NULL)  
+	   {  
+	       printf("\n There are less than %d elements", loc);  
+	       return;  
+	   }  
+       } 
+       
        printf("Enter value");  
        scanf("%d",&item);  
        ptr->data = item;  
@@ -200,7 +202,7 @@ void deletion_last()
     else   
     {  
         ptr = head;   
-        if(ptr->next != NULL)  
+        while(ptr->next != NULL)  
         {  
             ptr = ptr -> next;   
         }  
@@ -217,7 +219,7 @@ void deletion_specified()
     scanf("%d", &val);  
     ptr = head;  
     while(ptr -> data != val)  
-    ptr = ptr -> next;  
+    	ptr = ptr -> next;  
     if(ptr -> next == NULL)  
     {  
         printf("\nCan't delete\n");  
@@ -238,13 +240,21 @@ void deletion_specified()
 void display()  
 {  
     struct node *ptr;  
-    printf("\n printing values...\n");  
-    ptr = head;  
-    while(ptr != NULL)  
-    {  
-        printf("%d\n",ptr->data);  
-        ptr=ptr->next;  
-    }  
+     
+    ptr = head; 
+    if(head==NULL)
+    {
+    	printf("\nUnderflow!!!!\n");
+    }
+    else
+    { 
+	    printf("\n printing values...\n"); 
+	    while(ptr != NULL)  
+	    {  
+		printf("%d\n",ptr->data);  
+		ptr=ptr->next;  
+	    }  
+    }
 }   
 void search()  
 {  
@@ -280,4 +290,4 @@ void search()
         }  
     }     
           
-} 
+}
