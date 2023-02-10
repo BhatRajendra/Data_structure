@@ -4,7 +4,7 @@ struct node
 {  
     struct node *prev;  
     struct node *next;  
-    int data;  
+    int data;  		//creating the doubly linked node
 };  
 struct node *head;  
 void insertion_beginning();  
@@ -14,17 +14,17 @@ void deletion_beginning();
 void deletion_last();  
 void deletion_specified();  
 void display();  
-void search();  
+void search();  		//user defined functions for each operation
 void main ()  
 {  
 int choice =0;  
-    while(choice != 9)  
+    while(choice != 9)  	//to get infinite loop till termination
     {  
         printf("\n*********Main Menu*********\n");  
         printf("\nChoose one option from the following list ...\n");  
         printf("\n===============================================\n");  
         printf("\n1.Insert in beginning\n2.Insert at last\n3.Insert at any random location\n4.Delete at beginning\n5.Delete from last \n6.Delete at random\n7.Search\n8.Display\n9.Exit\n ");  
-        printf("\nEnter your choice?\n");  
+        printf("\nEnter your choice:\n");  
         scanf("\n%d",&choice);  
         switch(choice)  
         {  
@@ -50,7 +50,7 @@ int choice =0;
             search();  
             break;  
             case 8:  
-            display();  
+            display();  		//function call for each operations
             break;  
             case 9:  
             exit(0);  
@@ -60,7 +60,7 @@ int choice =0;
         }  
     }  
 }  
-void insertion_beginning()  
+void insertion_beginning()  		//function to insert data at beginning
 {  
    struct node *ptr;   
    int item;  
@@ -73,27 +73,26 @@ void insertion_beginning()
    {  
     printf("\nEnter Item value");  
     scanf("%d",&item);  
-      
+      ptr->data=item;		//insertng the element
    if(head==NULL)  
    {  
        ptr->next = NULL;  
        ptr->prev=NULL;  
-       ptr->data=item;  
-       head=ptr;  
+       head=ptr;  		//creating the ll
    }  
    else   
    {  
-       ptr->data=item;  
+        
        ptr->prev=NULL;  
        ptr->next = head;  
        head->prev=ptr;  
-       head=ptr;  
+       head=ptr;  		//linking the new node to existing ll
    }  
    printf("\nNode inserted\n");  
 }  
      
 }  
-void insertion_last()  
+void insertion_last()  		//function to insert node at the end of ll
 {  
    struct node *ptr,*temp;  
    int item;  
@@ -106,12 +105,12 @@ void insertion_last()
    {  
        printf("\nEnter value");  
        scanf("%d",&item);  
-        ptr->data=item;  
+        ptr->data=item;  		//insertng the element
        if(head == NULL)  
        {  
            ptr->next = NULL;  
            ptr->prev = NULL;  
-           head = ptr;  
+           head = ptr;  		//creating the ll
        }  
        else  
        {  
@@ -122,13 +121,13 @@ void insertion_last()
           }  
           temp->next = ptr;  
           ptr ->prev=temp;  
-          ptr->next = NULL;  
+          ptr->next = NULL;  		//linking the new node to existing ll
           }  
              
        }  
      printf("\nnode inserted\n");  
     }  
-void insertion_specified()  
+void insertion_specified()  		//function to insert at random specified location in the node
 {  
    struct node *ptr,*temp;  
    int item,loc,i;  
@@ -155,15 +154,15 @@ void insertion_specified()
        
        printf("Enter value");  
        scanf("%d",&item);  
-       ptr->data = item;  
+       ptr->data = item;  		//insertng the element
        ptr->next = temp->next;  
        ptr -> prev = temp;  
        temp->next = ptr;  
-       temp->next->prev=ptr;  
+       temp->next->prev=ptr;  		//linking the new node to existing ll
        printf("\nnode inserted\n");  
    }  
 }  
-void deletion_beginning()  
+void deletion_beginning()  		//function to delete node at beginning
 {  
     struct node *ptr;  
     if(head == NULL)  
@@ -173,7 +172,7 @@ void deletion_beginning()
     else if(head->next == NULL)  
     {  
         head = NULL;   
-        free(head);  
+        free(head);  		//deleting the node
         printf("\nnode deleted\n");  
     }  
     else  
@@ -181,12 +180,12 @@ void deletion_beginning()
         ptr = head;  
         head = head -> next;  
         head -> prev = NULL;  
-        free(ptr);  
+        free(ptr);  		//deleting the node
         printf("\nnode deleted\n");  
     }  
   
 }  
-void deletion_last()  
+void deletion_last()  		//function to delete last node of ll
 {  
     struct node *ptr;  
     if(head == NULL)  
@@ -196,7 +195,7 @@ void deletion_last()
     else if(head->next == NULL)  
     {  
         head = NULL;   
-        free(head);   
+        free(head);   		//deleting the node
         printf("\nnode deleted\n");  
     }  
     else   
@@ -207,11 +206,11 @@ void deletion_last()
             ptr = ptr -> next;   
         }  
         ptr -> prev -> next = NULL;   
-        free(ptr);  
+        free(ptr);  		//deleting the node
         printf("\nnode deleted\n");  
     }  
 }  
-void deletion_specified()  
+void deletion_specified()   	//deleting node at specified location
 {  
     struct node *ptr, *temp;  
     int val;  
@@ -233,11 +232,11 @@ void deletion_specified()
         temp = ptr -> next;  
         ptr -> next = temp -> next;  
         temp -> next -> prev = ptr;  
-        free(temp);  
+        free(temp);  		//deleting the node
         printf("\nnode deleted\n");  
     }     
 }  
-void display()  
+void display()  //function to display all the elements in the ll
 {  
     struct node *ptr;  
      
@@ -251,12 +250,12 @@ void display()
 	    printf("\n printing values...\n"); 
 	    while(ptr != NULL)  
 	    {  
-		printf("%d\n",ptr->data);  
+		printf("%d\n",ptr->data);  //displaying the ll elements
 		ptr=ptr->next;  
 	    }  
     }
 }   
-void search()  
+void search()  		//function to search the required element in LL
 {  
     struct node *ptr;  
     int item,i=0,flag;  
